@@ -1,5 +1,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
+	function checkAccount() {
+		$("#mesg").load("sherry77.jsp?account=" + $("#account").val());		
+	}
+	
+	function add() {
+		$.post("sherry78.jsp", 
+				{
+					"account" : $("#account").val(),
+					"passwd" : $("#passwd").val(),
+					"realname" : $("#realname").val(),
+					"birthday" : $("#birthday").val()
+				}, function (data, status) {
+					if (status == 'success'){
+						console.log("add success");
+					} 
+				});
+	}
 </script>
 <!DOCTYPE html>
 <html>
@@ -8,9 +25,10 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		Account: <input type="test" id="account" /><span id="mesg"></span><br />
+		Account: <input type="test" id="account" onblur="checkAccount()"/><span id="mesg"></span><br />
 		Password: <input type="password" id="passwdt" /><br />
 		Realname: <input type="text" id="realname" /><br />
 		Bithday: <input type="date" id="birthday" /><br />
+		<button onclick="add()">Add</button>
 	</body>
 </html>
