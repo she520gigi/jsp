@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	const xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () { //定義一個匿名function
+		console.log("OK2:" + xhttp.readyState);
+		console.log("OK2:" + xhttp.status);
+		if(xhttp.readyState == 4 && xhttp.status == 200){
+			console.log("OK");
+			document.getElementById("here").innerHTML = xhttp.responseText;
+		}
+	};
+	
+	xhttp.onload = callback;
+	function callback() {
+		var id2 = document.getElementById('id2');
+		id2.innerHTML = xhttp.responseText;
+	}
+	
+	function test1() {
+		xhttp.open("GET", "sherry69.jsp", true);
+		xhttp.send();
+	}
+	
+</script>
+
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<input type="button" value="test1" onclick="test1()" /><hr />
+		<div id="here"></div>
+		<div id="id2"></div>
+	</body>
+</html>
